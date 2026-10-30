@@ -3,31 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="잎 표면 구조에 따른 미세먼지 흡착률을 비교하는 인터랙티브 과학 연구 발표" />
-    <meta name="theme-color" content="#f4f0e5" />
-    <title>3D Botanical Lab — 잎 표면과 미세먼지</title>
+    <meta name="description" content="잎 표면 구조에 따른 미세먼지 흡착률 비교 — 정은우 · 유민수. 네 식물의 활성탄 부착 실험, 테이프 전사와 Python·OpenCV 이미지 분석을 소개합니다." />
+    <meta name="theme-color" content="#FAF8F2" />
+    <meta property="og:title" content="잎 표면 구조에 따른 미세먼지 흡착률 비교" />
+    <meta property="og:description" content="정은우 · 유민수의 잎 표면 구조와 활성탄 부착 비교 연구 발표" />
+    <title>잎 표면 구조에 따른 미세먼지 흡착률 비교</title>
     <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/presentation.css" />
     <script src="scripts/main.js" defer></script>
   </head>
   <body>
+    <a class="skip-link" href="#research">연구 목차로 건너뛰기</a>
     <header class="site-header" aria-label="사이트 헤더">
-      <a class="brand" href="#top" aria-label="3D Botanical Lab 홈">
+      <a class="brand" href="#top" aria-label="연구 발표 표지로 이동">
         <span class="brand-mark" aria-hidden="true"><span></span></span>
-        <span>3D Botanical Lab</span>
+        <span>Botanical Research · 정은우 · 유민수</span>
       </a>
       <div class="header-meta"><span class="live-dot" aria-hidden="true"></span>Interactive Research</div>
     </header>
 
     <main>
-      <section class="hero" id="top" aria-labelledby="hero-title">
+      <section class="hero" id="top" data-section="표지" aria-labelledby="hero-title">
         <div class="ambient-shape ambient-shape--one" aria-hidden="true"></div>
         <div class="ambient-shape ambient-shape--two" aria-hidden="true"></div>
 
         <div class="hero-copy" data-reveal>
           <p class="eyebrow"><span>01</span> Plant Surface Study</p>
-          <h1 id="hero-title">잎의 표면은<br /><em>먼지를 기억할까?</em></h1>
-          <p class="hero-description">서로 다른 잎 표면 구조가 미세먼지를 붙잡는 방식과 흡착률의 차이를 입체적으로 관찰합니다.</p>
+          <h1 id="hero-title">잎 표면 구조에 따른 미세먼지 흡착률 비교</h1>
+          <p class="hero-description">네 가지 식물, 서로 다른 표면.<br />활성탄 입자의 부착을 통해 잎의 작은 차이를 살펴봅니다.</p>
           <p class="hero-researchers"><span>Researchers</span> 정은우 · 유민수</p>
           <a class="start-button" href="#research" data-start>
             <span>연구 시작하기</span>
@@ -45,9 +49,10 @@
           <div class="particle particle--three" aria-hidden="true"></div>
           <div class="plant-wrap">
             <img class="hero-plant" src="assets/images/hero-plant.png" alt="점토 질감으로 표현한 세 장의 잎과 미세먼지 입자" width="1175" height="1339" fetchpriority="high" />
+            <span class="hero-fallback" hidden>잎 표면과 입자의 만남</span>
           </div>
           <div class="specimen-label" aria-hidden="true">
-            <span class="label-index">A—01</span><span class="label-line"></span><span>Surface<br />Specimen</span>
+            <span class="label-index">A—01</span><span class="label-line"></span><span>설명용 3D 그래픽<br />실제 실험 사진 아님</span>
           </div>
         </div>
 
@@ -66,19 +71,223 @@
         <div class="scroll-cue" aria-hidden="true"><span>SCROLL TO EXPLORE</span><i></i></div>
       </section>
 
-      <section class="research-intro" id="research" aria-labelledby="research-title">
-        <div class="section-number" aria-hidden="true">01</div>
-        <div class="intro-copy">
-          <p class="eyebrow"><span>Next</span> Research Overview</p>
-          <h2 id="research-title">작은 표면에서 시작된<br />커다란 질문</h2>
-          <p>이곳부터 연구 배경, 실험 설계, 관찰 결과가 이어집니다. 다음 단계에서 발표의 각 장면을 하나씩 확장할 예정입니다.</p>
+      <section class="chapter chapter-dark" id="research" data-section="연구 목차" aria-labelledby="research-title">
+        <div class="chapter-inner">
+          <header class="chapter-heading reveal"><p class="eyebrow"><span>02</span> Explore the study</p><h2 id="research-title">연구 목차</h2></header>
+          <p class="lead">잎을 관찰하는 질문에서, 결과를 다시 바라보는 질문까지.</p>
+<nav class="toc-grid" aria-label="연구 목차">
+<a href="#motivation" class="toc-item"><span>01</span><div><h3>연구 동기</h3><p>왜 잎 표면을 살펴볼까?</p></div><small>03–04</small><b aria-hidden="true">↗</b></a><a href="#surface" class="toc-item"><span>02</span><div><h3>이론적 배경</h3><p>구조·입자·측정의 원리</p></div><small>05–10</small><b aria-hidden="true">↗</b></a><a href="#plants" class="toc-item"><span>03</span><div><h3>실험 방법</h3><p>네 식물과 하나의 실험 과정</p></div><small>11–16</small><b aria-hidden="true">↗</b></a><a href="#measurements" class="toc-item"><span>04</span><div><h3>실험 결과</h3><p>면적 원자료와 보고서 흡착률</p></div><small>17–18</small><b aria-hidden="true">↗</b></a><a href="#conclusion" class="toc-item"><span>05</span><div><h3>결론</h3><p>가설을 돌아보고 다음 실험으로</p></div><small>19–20</small><b aria-hidden="true">↗</b></a>
+</nav>
         </div>
-        <div class="intro-cards" aria-label="향후 발표 구성">
-          <article><span>01</span><strong>연구 배경</strong></article>
-          <article><span>02</span><strong>실험 설계</strong></article>
-          <article><span>03</span><strong>관찰 결과</strong></article>
+      </section>
+
+      <section class="chapter " id="motivation" data-section="연구 동기" aria-labelledby="motivation-title">
+        <div class="chapter-inner">
+          <header class="chapter-heading reveal"><p class="eyebrow"><span>03</span> A question from a leaf</p><h2 id="motivation-title">연구 동기</h2></header>
+          <div class="split"><div class="reading reveal"><p class="statement">같은 입자가 내려앉아도,<br /><em>잎마다 붙는 정도는 다를까?</em></p><p>매끈한 잎, 털이 많은 잎, 비교적 평평한 잎. 잎마다 다른 표면이 입자와 만나는 방식도 다를 수 있다는 궁금증에서 연구를 시작했습니다.</p><p>눈에 잘 보이지 않는 부착 차이를 비교하기 위해 활성탄을 모사 입자로 사용하고, 잎에서 옮겨 낸 입자의 이미지를 관찰했습니다.</p><p class="note">이번 실험의 직접적인 관찰 대상은 활성탄입니다. 실제 대기 중 미세먼지의 제거 성능과는 구분합니다.</p></div><figure class="model-card tilt-card">
+  <div class="surface-scene flat" role="img" aria-label="잎 표면에 입자가 접촉하는 모습">
+    <div class="leaf-slab"><div class="leaf-vein"></div>
+    <b class="dust-grain" style="--x:22%;--y:30%;--size:14px"></b><b class="dust-grain" style="--x:45%;--y:58%;--size:17px"></b><b class="dust-grain" style="--x:72%;--y:26%;--size:20px"></b><b class="dust-grain" style="--x:65%;--y:70%;--size:23px"></b><b class="dust-grain" style="--x:33%;--y:78%;--size:26px"></b></div>
+  </div><figcaption><span class="tag">설명용 3D 모형</span> 잎 표면에 입자가 접촉하는 모습<small>구조와 접촉을 개념적으로 표현한 모형이며, 실제 크기·밀도나 측정 결과를 나타내지 않습니다.</small></figcaption></figure></div>
+        </div>
+      </section>
+
+      <section class="chapter chapter-mint" id="hypothesis" data-section="연구 목적과 가설" aria-labelledby="hypothesis-title">
+        <div class="chapter-inner">
+          <header class="chapter-heading reveal"><p class="eyebrow"><span>04</span> Before the experiment</p><h2 id="hypothesis-title">연구 목적과 가설</h2></header>
+          <div class="duo-grid"><article class="soft-card reveal"><span class="card-label">연구 목적</span><h3>서로 다른 잎,<br />활성탄의 부착 비교</h3><p>표면 특성이 서로 다른 네 식물의 앞면과 뒷면에서 활성탄 부착 정도를 비교하고, 테이프로 전사된 입자의 면적을 분석합니다.</p></article><article class="soft-card hypothesis-card reveal"><span class="tag">실험 전의 초기 가설</span><h3>털이 있는 표면에서<br />부착량이 더 클 것이다.</h3><p>털 구조가 입자와 만나는 기회를 늘리거나 입자를 붙잡을 수 있을 것이라 예상했습니다. 털이 많은 램스이어가 가장 높은 결과를 보일 것으로 생각했습니다.</p><a class="text-link" href="#conclusion">실제 결과와 비교하기 ↗</a></article></div>
+        </div>
+      </section>
+
+      <section class="chapter " id="surface" data-section="잎 표면 구조와 입자 부착" aria-labelledby="surface-title">
+        <div class="chapter-inner">
+          <header class="chapter-heading reveal"><p class="eyebrow"><span>05</span> The contact zone</p><h2 id="surface-title">잎 표면 구조와 입자 부착</h2></header>
+          <div class="split"><figure class="model-card tilt-card">
+  <div class="surface-scene textured" role="img" aria-label="표면의 굴곡과 입자의 접촉">
+    <div class="leaf-slab"><div class="leaf-vein"></div>
+    <b class="dust-grain" style="--x:22%;--y:30%;--size:14px"></b><b class="dust-grain" style="--x:45%;--y:58%;--size:17px"></b><b class="dust-grain" style="--x:72%;--y:26%;--size:20px"></b><b class="dust-grain" style="--x:65%;--y:70%;--size:23px"></b><b class="dust-grain" style="--x:33%;--y:78%;--size:26px"></b></div>
+  </div><figcaption><span class="tag">설명용 3D 모형</span> 표면의 굴곡과 입자의 접촉<small>구조와 접촉을 개념적으로 표현한 모형이며, 실제 크기·밀도나 측정 결과를 나타내지 않습니다.</small></figcaption></figure><div class="reading reveal"><h3>입자가 머무는 작은 지형</h3><p>입자는 잎과 접촉한 뒤 표면의 굴곡, 털, 왁스층 등과 상호작용합니다. 구조뿐 아니라 입자 크기, 표면 상태와 주변 조건도 부착에 영향을 줄 수 있습니다.</p><ol class="steps"><li><strong>접근</strong><span>분산된 입자가 잎 가까이 이동합니다.</span></li><li><strong>접촉</strong><span>입자가 표면이나 털 구조에 닿습니다.</span></li><li><strong>잔류 또는 이탈</strong><span>접촉한 모든 입자가 그대로 남는 것은 아닙니다.</span></li></ol></div></div>
+        </div>
+      </section>
+
+      <section class="chapter chapter-mint" id="hairy" data-section="털이 있는 표면" aria-labelledby="hairy-title">
+        <div class="chapter-inner">
+          <header class="chapter-heading reveal"><p class="eyebrow"><span>06</span> Trichomes</p><h2 id="hairy-title">털이 있는 표면</h2></header>
+          <div class="split"><div class="reading reveal"><span class="tag">대표 관찰 대상 · 램스이어</span><h3>털 사이의 공간에 주목하기</h3><p>잎 표면의 털은 입자와 접촉할 수 있는 구조를 만듭니다. 입자가 털 사이에 머물 가능성이 있지만, 털의 존재만으로 부착량을 단정할 수는 없습니다.</p><p class="note">측정에서도 고려할 점: 털 사이에 남은 활성탄은 테이프에 완전히 옮겨지지 않을 수 있습니다.</p></div><figure class="model-card tilt-card">
+  <div class="surface-scene hairy" role="img" aria-label="털 구조 사이에 입자가 머무는 개념 모형">
+    <div class="leaf-slab"><div class="leaf-vein"></div><i class="trichome" style="--x:12%;--y:18%;--bend:-12deg"></i><i class="trichome" style="--x:29%;--y:18%;--bend:12deg"></i><i class="trichome" style="--x:46%;--y:18%;--bend:-12deg"></i><i class="trichome" style="--x:63%;--y:18%;--bend:12deg"></i><i class="trichome" style="--x:80%;--y:18%;--bend:-12deg"></i><i class="trichome" style="--x:12%;--y:45%;--bend:12deg"></i><i class="trichome" style="--x:29%;--y:45%;--bend:-12deg"></i><i class="trichome" style="--x:46%;--y:45%;--bend:12deg"></i><i class="trichome" style="--x:63%;--y:45%;--bend:-12deg"></i><i class="trichome" style="--x:80%;--y:45%;--bend:12deg"></i><i class="trichome" style="--x:12%;--y:72%;--bend:-12deg"></i><i class="trichome" style="--x:29%;--y:72%;--bend:12deg"></i><i class="trichome" style="--x:46%;--y:72%;--bend:-12deg"></i><i class="trichome" style="--x:63%;--y:72%;--bend:12deg"></i><i class="trichome" style="--x:80%;--y:72%;--bend:-12deg"></i>
+    <b class="dust-grain" style="--x:22%;--y:30%;--size:14px"></b><b class="dust-grain" style="--x:45%;--y:58%;--size:17px"></b><b class="dust-grain" style="--x:72%;--y:26%;--size:20px"></b><b class="dust-grain" style="--x:65%;--y:70%;--size:23px"></b><b class="dust-grain" style="--x:33%;--y:78%;--size:26px"></b></div>
+  </div><figcaption><span class="tag">설명용 3D 모형</span> 털 구조 사이에 입자가 머무는 개념 모형<small>구조와 접촉을 개념적으로 표현한 모형이며, 실제 크기·밀도나 측정 결과를 나타내지 않습니다.</small></figcaption></figure></div>
+        </div>
+      </section>
+
+      <section class="chapter " id="waxy" data-section="왁스층이 있는 표면" aria-labelledby="waxy-title">
+        <div class="chapter-inner">
+          <header class="chapter-heading reveal"><p class="eyebrow"><span>07</span> Cuticular wax</p><h2 id="waxy-title">왁스층이 있는 표면</h2></header>
+          <div class="split"><figure class="model-card tilt-card">
+  <div class="surface-scene waxy" role="img" aria-label="왁스층과 입자의 접촉을 나타낸 모형">
+    <div class="leaf-slab"><div class="leaf-vein"></div><div class="wax-film"></div>
+    <b class="dust-grain" style="--x:22%;--y:30%;--size:14px"></b><b class="dust-grain" style="--x:45%;--y:58%;--size:17px"></b><b class="dust-grain" style="--x:72%;--y:26%;--size:20px"></b><b class="dust-grain" style="--x:65%;--y:70%;--size:23px"></b><b class="dust-grain" style="--x:33%;--y:78%;--size:26px"></b></div>
+  </div><figcaption><span class="tag">설명용 3D 모형</span> 왁스층과 입자의 접촉을 나타낸 모형<small>구조와 접촉을 개념적으로 표현한 모형이며, 실제 크기·밀도나 측정 결과를 나타내지 않습니다.</small></figcaption></figure><div class="reading reveal"><h3>매끈해 보여도,<br />표면의 성질은 복잡합니다.</h3><p>잎의 큐티클과 왁스층은 잎 표면의 성질에 관여합니다. 겉으로 매끈하게 보이는 표면에도 작은 구조가 존재할 수 있습니다.</p><p>왁스층이 있다는 사실만으로 활성탄이 더 많이 또는 더 적게 붙는다고 결론 내리지 않습니다. 표면의 실제 상태와 실험 조건을 함께 살펴야 합니다.</p><span class="tag">빛 반사는 왁스층을 설명하는 시각적 표현입니다.</span></div></div>
+        </div>
+      </section>
+
+      <section class="chapter chapter-mint" id="flat" data-section="비교적 평평한 표면" aria-labelledby="flat-title">
+        <div class="chapter-inner">
+          <header class="chapter-heading reveal"><p class="eyebrow"><span>08</span> Surface contact</p><h2 id="flat-title">비교적 평평한 표면</h2></header>
+          <div class="split"><div class="reading reveal"><h3>평평한 면에서도<br />접촉은 일어납니다.</h3><p>입자가 내려앉으면 잎 표면과 직접 접촉합니다. 비교적 평평한 표면은 털이 있는 표면과 접촉 형태가 다르며, 눈에 보이는 평평함이 미세한 구조의 부재를 뜻하지는 않습니다.</p><p>이 모형은 접촉의 형태를 비교하기 위한 것입니다. 네 식물의 표면을 정밀 측정한 결과나 부착량 순위를 표현하지 않습니다.</p></div><figure class="model-card tilt-card">
+  <div class="surface-scene flat" role="img" aria-label="평평한 면 위에 입자가 직접 접촉하는 모습">
+    <div class="leaf-slab"><div class="leaf-vein"></div>
+    <b class="dust-grain" style="--x:22%;--y:30%;--size:14px"></b><b class="dust-grain" style="--x:45%;--y:58%;--size:17px"></b><b class="dust-grain" style="--x:72%;--y:26%;--size:20px"></b><b class="dust-grain" style="--x:65%;--y:70%;--size:23px"></b><b class="dust-grain" style="--x:33%;--y:78%;--size:26px"></b></div>
+  </div><figcaption><span class="tag">설명용 3D 모형</span> 평평한 면 위에 입자가 직접 접촉하는 모습<small>구조와 접촉을 개념적으로 표현한 모형이며, 실제 크기·밀도나 측정 결과를 나타내지 않습니다.</small></figcaption></figure></div>
+        </div>
+      </section>
+
+      <section class="chapter " id="tape-principle" data-section="테이프 전사법" aria-labelledby="tape-principle-title">
+        <div class="chapter-inner">
+          <header class="chapter-heading reveal"><p class="eyebrow"><span>09</span> From leaf to glass</p><h2 id="tape-principle-title">테이프 전사법</h2></header>
+          <div class="transfer-diagram reveal" role="img" aria-label="잎의 활성탄을 테이프에 옮긴 후 슬라이드 글라스에 부착하는 원리"><div><span class="mini-leaf">● · ●</span><strong>잎 표면</strong></div><b aria-hidden="true">→</b><div><span class="mini-tape">· ● ·</span><strong>투명 테이프</strong></div><b aria-hidden="true">→</b><div><span class="mini-slide">· ● ·</span><strong>슬라이드 글라스</strong></div></div><p class="diagram-caption">설명용 모형 · 실제 전사 사진 아님</p><div class="duo-grid"><p class="lead">잎에 붙은 활성탄을 테이프로 옮겨, 관찰하기 쉬운 평면 위에 모읍니다.</p><aside class="note"><strong>관찰값에는 전사 과정도 반영됩니다.</strong><p>테이프에 옮겨진 입자가 분석 대상입니다. 잎에 남아 옮겨지지 않은 활성탄은 측정 면적에 포함되지 않을 수 있습니다.</p></aside></div>
+        </div>
+      </section>
+
+      <section class="chapter chapter-dark" id="opencv" data-section="Python과 OpenCV" aria-labelledby="opencv-title">
+        <div class="chapter-inner">
+          <header class="chapter-heading reveal"><p class="eyebrow"><span>10</span> Pixels into evidence</p><h2 id="opencv-title">Python과 OpenCV</h2></header>
+          <div class="split"><div class="reading reveal"><h3>입자가 차지한 부분을<br />이미지에서 구분합니다.</h3><p>Python은 분석 절차를 구성하고, OpenCV는 이미지 처리에 사용합니다. 전사 이미지에서 활성탄에 해당하는 영역을 구분한 뒤 그 면적을 살펴봅니다.</p><p class="note">아래 흐름은 분석 원리를 설명합니다. 실제 코드, 임계값, 보정 기준은 제공되지 않았으므로 특정 설정이나 흡착률 계산식을 가정하지 않습니다.</p></div><ol class="pipeline"><li><span>01</span><h3>이미지 읽기</h3><p>전사된 입자가 보이는 이미지 준비</p></li><li><span>02</span><h3>입자 영역 구분</h3><p>배경과 활성탄 영역을 분리</p></li><li><span>03</span><h3>영역 면적 분석</h3><p>입자가 차지하는 부분을 정량화</p></li></ol></div>
+        </div>
+      </section>
+
+      <section class="chapter " id="plants" data-section="실험 대상 식물 4종" aria-labelledby="plants-title">
+        <div class="chapter-inner">
+          <header class="chapter-heading reveal"><p class="eyebrow"><span>11</span> Meet the specimens</p><h2 id="plants-title">실험 대상 식물 4종</h2></header>
+          <p class="lead">네 식물의 앞면과 뒷면을 비교합니다. 실제 잎의 상태는 촬영 자료와 함께 확인할 수 있도록 준비했습니다.</p><div class="plant-grid"><article class="plant-card reveal"><div class="plant-name"><span>01</span><h3>고무나무</h3></div><figure class="photo-slot">
+  <div class="photo-frame" style="--photo-ratio:4 / 3">
+    <img data-photo-src="" alt="고무나무 실제 식물 사진" width="1200" height="900" hidden />
+    <div class="photo-placeholder"><span class="photo-symbol" aria-hidden="true">＋</span><strong>고무나무 실제 식물 사진</strong><span>실제 사진 대기 · 권장 4:3</span></div>
+  </div>
+  <figcaption><span class="photo-status">실제 촬영 자료를 넣을 자리입니다.</span><details><summary>사진 넣는 방법</summary><p><code>assets/photos/rubber-plant.jpg</code>에 사진을 넣고, 이 슬롯의 <code>data-photo-src=""</code>를 <code>data-photo-src="assets/photos/rubber-plant.jpg"</code>로 바꿔 주세요.</p></details></figcaption>
+</figure><p>두껍고 윤기가 있는 잎을 관찰 대상으로 삼았습니다.</p></article><article class="plant-card reveal"><div class="plant-name"><span>02</span><h3>스킨답서스</h3></div><figure class="photo-slot">
+  <div class="photo-frame" style="--photo-ratio:4 / 3">
+    <img data-photo-src="" alt="스킨답서스 실제 식물 사진" width="1200" height="900" hidden />
+    <div class="photo-placeholder"><span class="photo-symbol" aria-hidden="true">＋</span><strong>스킨답서스 실제 식물 사진</strong><span>실제 사진 대기 · 권장 4:3</span></div>
+  </div>
+  <figcaption><span class="photo-status">실제 촬영 자료를 넣을 자리입니다.</span><details><summary>사진 넣는 방법</summary><p><code>assets/photos/pothos.jpg</code>에 사진을 넣고, 이 슬롯의 <code>data-photo-src=""</code>를 <code>data-photo-src="assets/photos/pothos.jpg"</code>로 바꿔 주세요.</p></details></figcaption>
+</figure><p>넓게 펼쳐진 잎의 앞면과 뒷면을 비교합니다.</p></article><article class="plant-card reveal"><div class="plant-name"><span>03</span><h3>스파티필름</h3></div><figure class="photo-slot">
+  <div class="photo-frame" style="--photo-ratio:4 / 3">
+    <img data-photo-src="" alt="스파티필름 실제 식물 사진" width="1200" height="900" hidden />
+    <div class="photo-placeholder"><span class="photo-symbol" aria-hidden="true">＋</span><strong>스파티필름 실제 식물 사진</strong><span>실제 사진 대기 · 권장 4:3</span></div>
+  </div>
+  <figcaption><span class="photo-status">실제 촬영 자료를 넣을 자리입니다.</span><details><summary>사진 넣는 방법</summary><p><code>assets/photos/peace-lily.jpg</code>에 사진을 넣고, 이 슬롯의 <code>data-photo-src=""</code>를 <code>data-photo-src="assets/photos/peace-lily.jpg"</code>로 바꿔 주세요.</p></details></figcaption>
+</figure><p>잎맥을 따라 굴곡이 보이는 잎을 관찰합니다.</p></article><article class="plant-card reveal"><div class="plant-name"><span>04</span><h3>램스이어</h3></div><figure class="photo-slot">
+  <div class="photo-frame" style="--photo-ratio:4 / 3">
+    <img data-photo-src="" alt="램스이어 실제 식물 사진" width="1200" height="900" hidden />
+    <div class="photo-placeholder"><span class="photo-symbol" aria-hidden="true">＋</span><strong>램스이어 실제 식물 사진</strong><span>실제 사진 대기 · 권장 4:3</span></div>
+  </div>
+  <figcaption><span class="photo-status">실제 촬영 자료를 넣을 자리입니다.</span><details><summary>사진 넣는 방법</summary><p><code>assets/photos/lambs-ear.jpg</code>에 사진을 넣고, 이 슬롯의 <code>data-photo-src=""</code>를 <code>data-photo-src="assets/photos/lambs-ear.jpg"</code>로 바꿔 주세요.</p></details></figcaption>
+</figure><p>표면에 털이 많은 잎으로 초기 가설을 살펴봅니다.</p></article></div><p class="note">소개 문구는 관찰 방향을 안내합니다. 표면의 미세구조를 측정하거나 확인한 자료를 대신하지 않습니다.</p>
+        </div>
+      </section>
+
+      <section class="chapter chapter-mint" id="apparatus" data-section="실험 장치" aria-labelledby="apparatus-title">
+        <div class="chapter-inner">
+          <header class="chapter-heading reveal"><p class="eyebrow"><span>12</span> A controlled space</p><h2 id="apparatus-title">실험 장치</h2></header>
+          <div class="split"><div class="reading reveal"><h3>위에는 입자,<br />아래에는 잎.</h3><p>DIY 실험 챔버의 위쪽에는 활성탄을 놓는 트레이를 배치하고, 아래쪽에는 비교할 잎을 수평으로 고정합니다.</p><div class="chamber-model" role="img" aria-label="위쪽 활성탄 트레이와 아래쪽에 수평 배치한 잎을 보여 주는 챔버 모식도"><div class="tray">위쪽 트레이 · 활성탄</div><div class="fall-path">↓ &nbsp; ↓ &nbsp; ↓</div><div class="leaf-row"><i></i><i></i><i></i><i></i></div><span>아래쪽 · 잎을 수평 고정</span></div><p class="diagram-caption">설명용 모식도 · 챔버의 실제 치수·형상을 재현하지 않음</p></div><figure class="photo-slot">
+  <div class="photo-frame" style="--photo-ratio:4 / 3">
+    <img data-photo-src="" alt="DIY 실험 챔버와 잎 배치 사진" width="1200" height="900" hidden />
+    <div class="photo-placeholder"><span class="photo-symbol" aria-hidden="true">＋</span><strong>DIY 실험 챔버와 잎 배치 사진</strong><span>실제 사진 대기 · 권장 4:3</span></div>
+  </div>
+  <figcaption><span class="photo-status">실제 촬영 자료를 넣을 자리입니다.</span><details><summary>사진 넣는 방법</summary><p><code>assets/photos/chamber.jpg</code>에 사진을 넣고, 이 슬롯의 <code>data-photo-src=""</code>를 <code>data-photo-src="assets/photos/chamber.jpg"</code>로 바꿔 주세요.</p></details></figcaption>
+</figure></div>
+        </div>
+      </section>
+
+      <section class="chapter " id="dispersion" data-section="활성탄 분산" aria-labelledby="dispersion-title">
+        <div class="chapter-inner">
+          <header class="chapter-heading reveal"><p class="eyebrow"><span>13</span> Experiment · 01</p><h2 id="dispersion-title">활성탄 분산</h2></header>
+          <div class="split"><figure class="photo-slot">
+  <div class="photo-frame" style="--photo-ratio:4 / 3">
+    <img data-photo-src="" alt="활성탄 분산 과정 사진" width="1200" height="900" hidden />
+    <div class="photo-placeholder"><span class="photo-symbol" aria-hidden="true">＋</span><strong>활성탄 분산 과정 사진</strong><span>실제 사진 대기 · 권장 4:3</span></div>
+  </div>
+  <figcaption><span class="photo-status">실제 촬영 자료를 넣을 자리입니다.</span><details><summary>사진 넣는 방법</summary><p><code>assets/photos/dispersion.jpg</code>에 사진을 넣고, 이 슬롯의 <code>data-photo-src=""</code>를 <code>data-photo-src="assets/photos/dispersion.jpg"</code>로 바꿔 주세요.</p></details></figcaption>
+</figure><div class="reading reveal"><div class="metric"><strong>0.5</strong><span>g</span></div><h3>위쪽 트레이에서 분산</h3><p>활성탄 0.5g을 위쪽 트레이에 놓고 공기를 불어 챔버 안에 분산합니다.</p><p>분산된 입자는 아래쪽 잎 표면과 만날 수 있습니다. 실제 공기 흐름의 세기나 입자 분포는 제공된 자료만으로 정량화하지 않습니다.</p><span class="tag">모사 입자 · 활성탄</span></div></div>
+        </div>
+      </section>
+
+      <section class="chapter chapter-mint" id="settling" data-section="자연 침강" aria-labelledby="settling-title">
+        <div class="chapter-inner">
+          <header class="chapter-heading reveal"><p class="eyebrow"><span>14</span> Experiment · 02</p><h2 id="settling-title">자연 침강</h2></header>
+          <div class="split"><div class="reading reveal"><div class="metric"><strong>45</strong><span>분</span></div><h3>수평으로 고정하고 기다리기</h3><p>아래쪽에 잎을 수평으로 고정한 상태에서 45분 동안 입자를 자연 침강시킵니다.</p><p>시간과 잎의 배치는 비교 조건입니다. 후속 실험에서는 측정 면적과 노출 조건도 함께 통일해 비교의 신뢰도를 높일 수 있습니다.</p><div class="settling-clock" aria-hidden="true"><span>45′</span></div></div><figure class="photo-slot">
+  <div class="photo-frame" style="--photo-ratio:4 / 3">
+    <img data-photo-src="" alt="45분 자연 침강 중 잎 배치 사진" width="1200" height="900" hidden />
+    <div class="photo-placeholder"><span class="photo-symbol" aria-hidden="true">＋</span><strong>45분 자연 침강 중 잎 배치 사진</strong><span>실제 사진 대기 · 권장 4:3</span></div>
+  </div>
+  <figcaption><span class="photo-status">실제 촬영 자료를 넣을 자리입니다.</span><details><summary>사진 넣는 방법</summary><p><code>assets/photos/settling.jpg</code>에 사진을 넣고, 이 슬롯의 <code>data-photo-src=""</code>를 <code>data-photo-src="assets/photos/settling.jpg"</code>로 바꿔 주세요.</p></details></figcaption>
+</figure></div>
+        </div>
+      </section>
+
+      <section class="chapter " id="transfer" data-section="테이프 전사 과정" aria-labelledby="transfer-title">
+        <div class="chapter-inner">
+          <header class="chapter-heading reveal"><p class="eyebrow"><span>15</span> Experiment · 03</p><h2 id="transfer-title">테이프 전사 과정</h2></header>
+          <div class="split"><figure class="photo-slot">
+  <div class="photo-frame" style="--photo-ratio:4 / 3">
+    <img data-photo-src="" alt="테이프 전사 및 슬라이드 글라스 사진" width="1200" height="900" hidden />
+    <div class="photo-placeholder"><span class="photo-symbol" aria-hidden="true">＋</span><strong>테이프 전사 및 슬라이드 글라스 사진</strong><span>실제 사진 대기 · 권장 4:3</span></div>
+  </div>
+  <figcaption><span class="photo-status">실제 촬영 자료를 넣을 자리입니다.</span><details><summary>사진 넣는 방법</summary><p><code>assets/photos/tape-transfer.jpg</code>에 사진을 넣고, 이 슬롯의 <code>data-photo-src=""</code>를 <code>data-photo-src="assets/photos/tape-transfer.jpg"</code>로 바꿔 주세요.</p></details></figcaption>
+</figure><div class="reading reveal"><h3>측정 영역의 입자를 옮깁니다.</h3><ol class="steps"><li><strong>영역 확인</strong><span>분석할 잎의 앞면·뒷면과 측정 영역을 구분합니다.</span></li><li><strong>테이프로 전사</strong><span>측정 영역의 활성탄을 테이프에 옮깁니다.</span></li><li><strong>글라스에 부착</strong><span>테이프를 슬라이드 글라스에 옮겨 이미지 분석을 준비합니다.</span></li></ol><p class="note">누르는 힘, 떼어 내는 방식, 털 구조 등에 따라 전사 효율이 달라질 가능성이 있습니다.</p></div></div>
+        </div>
+      </section>
+
+      <section class="chapter chapter-mint" id="analysis" data-section="이미지 분석 과정" aria-labelledby="analysis-title">
+        <div class="chapter-inner">
+          <header class="chapter-heading reveal"><p class="eyebrow"><span>16</span> Experiment · 04</p><h2 id="analysis-title">이미지 분석 과정</h2></header>
+          <div class="split"><div class="reading reveal"><h3>전사 이미지에서<br />입자의 영역까지</h3><ol class="steps"><li><strong>촬영 이미지 준비</strong><span>식물·앞면·뒷면 정보를 구분합니다.</span></li><li><strong>Python·OpenCV 처리</strong><span>배경과 활성탄 영역을 구분하고 선택 영역을 확인합니다.</span></li><li><strong>면적 결과 확인</strong><span>분석 결과를 기록하고 원자료와 비교합니다.</span></li></ol><p class="note">픽셀 면적을 cm²로 표현하려면 실제 길이 기준을 이용한 보정이 필요합니다. 해당 보정값과 세부 분석 설정은 제공되지 않았습니다. 다음 표는 전달받은 원자료를 그대로 제시합니다.</p></div><figure class="photo-slot">
+  <div class="photo-frame" style="--photo-ratio:16 / 10">
+    <img data-photo-src="" alt="Python·OpenCV 분석 화면" width="1600" height="1000" hidden />
+    <div class="photo-placeholder"><span class="photo-symbol" aria-hidden="true">＋</span><strong>Python·OpenCV 분석 화면</strong><span>실제 사진 대기 · 권장 16:10</span></div>
+  </div>
+  <figcaption><span class="photo-status">실제 촬영 자료를 넣을 자리입니다.</span><details><summary>사진 넣는 방법</summary><p><code>assets/photos/opencv-analysis.jpg</code>에 사진을 넣고, 이 슬롯의 <code>data-photo-src=""</code>를 <code>data-photo-src="assets/photos/opencv-analysis.jpg"</code>로 바꿔 주세요.</p></details></figcaption>
+</figure></div>
+        </div>
+      </section>
+
+      <section class="chapter " id="measurements" data-section="측정 결과" aria-labelledby="measurements-title">
+        <div class="chapter-inner">
+          <header class="chapter-heading reveal"><p class="eyebrow"><span>17</span> The raw measurements</p><h2 id="measurements-title">측정 결과</h2></header>
+          <div class="results-layout"><div class="reading reveal"><span class="tag">원자료 · 단위 cm²</span><h3>전사된 활성탄의<br />측정 면적</h3><p>네 식물 모두 앞면의 측정값이 뒷면보다 높았습니다.</p><p class="note">앞면과 뒷면의 측정 영역 크기가 다를 수 있습니다. 아래 값은 원자료이며, 임의로 면적당 부착량으로 환산하지 않았습니다.</p></div><div class="table-card"><table><caption>식물별 앞면·뒷면 활성탄 측정 면적 (cm²)</caption><thead><tr><th scope="col">식물</th><th scope="col">앞면</th><th scope="col">뒷면</th></tr></thead><tbody><tr><th scope="row">고무나무</th><td>0.802</td><td>0.103</td></tr><tr><th scope="row">스킨답서스</th><td>0.666</td><td>0.134</td></tr><tr><th scope="row">스파티필름</th><td>1.234</td><td>0.068</td></tr><tr><th scope="row">램스이어</th><td>1.138</td><td>0.106</td></tr></tbody></table></div></div>
+        </div>
+      </section>
+
+      <section class="chapter chapter-dark" id="rates" data-section="앞면 흡착률 비교" aria-labelledby="rates-title">
+        <div class="chapter-inner">
+          <header class="chapter-heading reveal"><p class="eyebrow"><span>18</span> As reported</p><h2 id="rates-title">앞면 흡착률 비교</h2></header>
+          <div class="results-layout"><div class="reading reveal"><span class="tag">보고서에 기재된 값 · %</span><h3>스파티필름이<br />가장 높았습니다.</h3><p>보고서의 앞면 흡착률을 높은 순서로 표시했습니다.</p><p class="note">흡착률 계산식은 제공되지 않았습니다. 이 값은 앞 섹션의 측정 면적(cm²)과 다른 지표이며, 두 지표를 같은 의미로 해석하거나 여기서 재계산하지 않습니다.</p></div><figure class="chart-card"><figcaption>보고서 기준 앞면 흡착률 <span>축 범위 0–100%</span></figcaption><div class="bar-chart"><div class="chart-row" data-value="41.1"><div class="bar-label"><span>스파티필름</span><strong>41.1%</strong></div><div class="bar-track" aria-hidden="true"><div class="bar-fill" style="--value:41.1%"></div></div></div><div class="chart-row" data-value="37.9"><div class="bar-label"><span>램스이어</span><strong>37.9%</strong></div><div class="bar-track" aria-hidden="true"><div class="bar-fill" style="--value:37.9%"></div></div></div><div class="chart-row" data-value="26.7"><div class="bar-label"><span>고무나무</span><strong>26.7%</strong></div><div class="bar-track" aria-hidden="true"><div class="bar-fill" style="--value:26.7%"></div></div></div><div class="chart-row" data-value="22.2"><div class="bar-label"><span>스킨답서스</span><strong>22.2%</strong></div><div class="bar-track" aria-hidden="true"><div class="bar-fill" style="--value:22.2%"></div></div></div><div class="chart-axis" aria-hidden="true"><span>0%</span><span>50%</span><span>100%</span></div></div></figure></div>
+        </div>
+      </section>
+
+      <section class="chapter " id="conclusion" data-section="결론과 실험의 한계" aria-labelledby="conclusion-title">
+        <div class="chapter-inner">
+          <header class="chapter-heading reveal"><p class="eyebrow"><span>19</span> What the results tell us</p><h2 id="conclusion-title">결론과 실험의 한계</h2></header>
+          <div class="conclusion-grid"><article class="soft-card reveal"><span class="card-label">관찰 결과</span><h3>앞면의 측정값이 더 높았다.</h3><p>네 식물 모두 앞면의 측정값이 뒷면보다 높았습니다. 보고서에 제시된 앞면 흡착률은 스파티필름이 가장 높았습니다.</p></article><article class="soft-card reveal"><span class="card-label">가설과 비교</span><h3>초기 가설과 일치하지 않았다.</h3><p>털이 많은 램스이어가 가장 높은 결과를 보일 것이라는 실험 전 가설은 실제 결과와 일치하지 않았습니다.</p></article><article class="soft-card reveal"><span class="card-label">측정 방법의 한계</span><h3>옮겨지지 않은 입자가 있을 수 있다.</h3><p>램스이어의 털 사이에 붙은 활성탄이 테이프로 완전히 옮겨지지 않았을 가능성이 있습니다. 이는 가능한 설명이며, 이번 결과로 확인된 원인은 아닙니다.</p></article><article class="soft-card reveal"><span class="card-label">해석의 범위</span><h3>실제 공기 정화 성능은 별도의 질문.</h3><p>활성탄은 실제 대기 중 미세먼지와 동일하지 않습니다. 이번 실험만으로 실제 공기 정화 성능을 단정할 수 없습니다.</p></article></div>
+        </div>
+      </section>
+
+      <section class="chapter chapter-mint" id="next" data-section="후속 연구와 마무리" aria-labelledby="next-title">
+        <div class="chapter-inner">
+          <header class="chapter-heading reveal"><p class="eyebrow"><span>20</span> The next question</p><h2 id="next-title">후속 연구와 마무리</h2></header>
+          <div class="next-grid"><article class="reveal"><span>01</span><h3>반복 실험</h3><p>결과의 신뢰도와 변동을 확인합니다.</p></article><article class="reveal"><span>02</span><h3>조건과 면적 통일</h3><p>노출·측정 조건을 같은 기준으로 맞춥니다.</p></article><article class="reveal"><span>03</span><h3>입자 크기 비교</h3><p>크기에 따라 부착 정도가 달라지는지 살펴봅니다.</p></article><article class="reveal"><span>04</span><h3>전사 효율 개선</h3><p>털 사이의 입자까지 옮길 수 있는 방법을 검토합니다.</p></article></div><blockquote>잎의 작은 차이에서 시작한 탐구, 더 정확한 실험으로 이어집니다.</blockquote><div class="closing"><p>정은우 · 유민수</p><a class="text-link" href="#top">표지로 돌아가기 ↑</a></div>
         </div>
       </section>
     </main>
+    <nav class="presentation-controls" aria-label="발표 제어" hidden>
+      <a href="#research" class="control-button" aria-label="연구 목차로 이동">목차</a>
+      <button type="button" class="control-button" data-prev aria-label="이전 섹션">←</button>
+      <div class="position-display"><span id="section-position">01 / 20 · 표지</span><progress id="section-progress" value="1" max="20" aria-label="현재 발표 섹션"></progress></div>
+      <button type="button" class="control-button" data-next aria-label="다음 섹션">→</button>
+      <button type="button" class="control-button" data-fullscreen aria-label="전체 화면 시작" aria-pressed="false">전체 화면</button>
+    </nav>
+    <p class="control-status" role="status" aria-live="polite"></p>
   </body>
 </html>

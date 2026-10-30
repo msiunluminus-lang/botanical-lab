@@ -1,0 +1,12 @@
+{
+  "name": "3d-botanical-lab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "잎 표면 구조에 따른 미세먼지 흡착률 비교",
+  "scripts": {
+    "check": "node --check scripts/main.js && node --check scripts/build.mjs && node --check tests/presentation.cjs",
+    "build": "node scripts/build.mjs",
+    "test": "node tests/presentation.cjs"
+  },
+  "engines": { "node": ">=18.17" }
+}

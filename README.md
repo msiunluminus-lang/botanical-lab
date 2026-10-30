@@ -1,2 +1,39 @@
-# botanical-lab
-3D interactive science research presentation about leaf surface structures
+# 3D Botanical Lab
+
+잎 표면 구조에 따른 미세먼지 흡착률을 비교하는 인터랙티브 과학 연구 발표 웹사이트입니다. 현재 버전은 발표의 표지 화면과 이후 콘텐츠를 확장할 수 있는 기본 구조에 집중합니다.
+
+## 실행 방법
+
+별도의 패키지 설치 없이 실행할 수 있습니다.
+
+```bash
+python3 -m http.server 8000
+```
+
+브라우저에서 `http://localhost:8000`을 열어 확인합니다.
+
+## 프로젝트 구조
+
+```text
+.
+├── index.html
+├── assets/
+│   └── images/
+│       └── hero-plant.png
+├── scripts/
+│   └── main.js
+└── styles/
+    └── main.css
+```
+
+## 주요 기능
+
+- 점토 질감의 3D 식물 오브젝트를 중심으로 한 표지
+- 연구 제목 및 연구자 정보
+- 발표 내용으로 이동하는 시작 버튼
+- 마우스 움직임에 반응하는 미세한 입체 효과
+- 모바일과 데스크톱에 대응하는 반응형 레이아웃
+
+## 연구자
+
+정은우 · 유민수

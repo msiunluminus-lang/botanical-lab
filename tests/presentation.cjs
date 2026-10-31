@@ -83,6 +83,9 @@ const server=createServer(async(req,res)=>{
   await page.mouse.move(box.x+box.width/2+60,box.y+box.height/2,{steps:5});await page.mouse.up();
   assert.ok(Number(await page.locator('[data-key="surface"]').getAttribute('data-rotation'))>.2);
   await canvas.focus();await page.keyboard.press('ArrowRight');await at('surface');
+  await page.locator('[data-key="surface"] [data-reset]').click();
+  assert.equal(await page.locator('[data-key="surface"]').getAttribute('data-zoom'),'1.00');
+  assert.equal(await page.locator('[data-key="surface"]').getAttribute('data-rotation'),'0.000');
   pass('Three surface modes, zoom, drag rotation and canvas keyboard isolation');
   await go('plants');await page.waitForSelector('[data-key="plant"][data-ready="webgl"]');
   const images=[];
@@ -126,6 +129,7 @@ const server=createServer(async(req,res)=>{
   edited.title='편집 확인 '+data.title;edited.researchers='편집 연구자';edited.plants[0].name='검증용 식물';edited.plants[0].rate=55.5;
   edited.sections[0].title='수정한 섹션 제목';edited.sections[0].paragraphs=['긴 설명 '.repeat(170)];
   edited.plants[0].description='식물 설명 수정 '.repeat(65);
+  for(const id of ['wax-hair','plants','closing'])edited.sections.find(s=>s.id===id).paragraphs=['본문 수정 검증 '+id];
   edited.photos.chamber.src='images/models/rubber.svg';
   edited.sections.push({id:'appendix',type:'story',tone:'white',title:'새로운 섹션',lead:'추가 확인',paragraphs:['새 내용을 입력합니다.']});
   const editPage=await browser.newPage({viewport:{width:320,height:844},reducedMotion:'reduce'});watch(editPage);
@@ -136,6 +140,8 @@ const server=createServer(async(req,res)=>{
   assert.equal(await editPage.locator('#research h2').textContent(),edited.sections[0].title);
   assert.equal(await editPage.locator('.bar-label').first().textContent(),'검증용 식물55.5%');
   assert.equal(await editPage.locator('main > section').count(),22);
+  for(const id of ['wax-hair','plants','closing'])assert.ok((await editPage.locator('#'+id).textContent()).includes('본문 수정 검증 '+id));
+  assert.equal(await editPage.locator('.idea-dot svg').count(),13);
   await editPage.locator('[data-photo="chamber"]').scrollIntoViewIfNeeded();
   await editPage.waitForFunction(()=>document.querySelector('[data-photo="chamber"] img').naturalWidth>0);
   assert.equal(await editPage.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);

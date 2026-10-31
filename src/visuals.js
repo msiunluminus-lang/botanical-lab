@@ -1,4 +1,15 @@
 // Local vector fallbacks and explanatory diagrams. No simulated experiment photos.
+export function conceptIcon(kind) {
+  const paths={
+    leaf:'M9 38Q5 10 39 8Q42 38 9 38ZM10 37L30 18M18 29V18M24 23H34',
+    compare:'M6 10H42M24 10V39M10 39H38M8 16V29H19V16M29 16V23H40V16',
+    measure:'M8 8H40V40H8ZM16 8V15M24 8V19M32 8V15M8 24H40M24 24V40',
+    particles:'M12 13H14V15H12ZM28 9H33V14H28ZM20 26H26V32H20ZM35 31H39V35H35ZM7 35H10V38H7Z',
+    repeat:'M39 20A16 16 0 0 0 10 12L6 17M6 7V17H16M9 28A16 16 0 0 0 29 40L42 31M32 31H42V41',
+    tape:'M10 12H36L41 36H15ZM17 20H28M20 26H31M10 12L6 35L15 36',
+  };
+  return `<svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="#52785E" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="${paths[kind]||paths.leaf}"/></svg>`;
+}
 const leafPaths = {
   rubber: "M0 0 C-50 -20 -62 -90 0 -132 C62 -90 50 -20 0 0Z",
   pothos: "M0 -10 C-40 30 -90 -45 -46 -70 C-18 -90 -4 -63 0 -60 C4 -63 18 -90 46 -70 C90 -45 40 30 0 -10Z",

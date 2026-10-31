@@ -4,6 +4,13 @@ export default {
   title: "잎 표면 구조에 따른 미세먼지 흡착률 비교",
   researchers: "정은우 · 유민수",
   description: "네 식물의 잎 표면과 활성탄 부착을 비교한 연구 발표",
+  // 항목에 붙는 설명 그림: leaf, compare, measure, particles, repeat, tape
+  itemIcons: {
+    purpose: ["leaf", "compare", "measure"],
+    conclusion: ["compare", "leaf", "tape"],
+    limits: ["particles", "tape", "measure"],
+    future: ["repeat", "measure", "particles", "tape"],
+  },
   cover: {
     label: "식물 표면 연구",
     introduction: "네 가지 잎, 서로 다른 표면.\n작은 입자가 머무는 자리를 관찰합니다.",

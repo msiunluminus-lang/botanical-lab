@@ -4,12 +4,16 @@
 
 ## 실행하기
 
+처음 내려받는 경우 `git clone --branch work https://github.com/msiunluminus-lang/botanical-lab.git`을 실행하고 `cd botanical-lab`으로 이동하세요. 이미 저장소가 있으면 `git switch work` 후 `git pull --ff-only`로 최신 버전을 받습니다.
+
 Node.js 20 이상이 필요합니다. 저장소 루트에서 실행하세요.
 
 ```bash
 npm ci
 npm run dev
 ```
+
+브라우저에서 **http://localhost:8000** 을 엽니다. 실행 중에는 터미널을 열어 두고, 종료하려면 `Ctrl+C`를 누릅니다.
 
 터미널에 표시된 포트(기본 8000)로 브라우저를 엽니다. 파일을 수정한 뒤 브라우저를 새로고침하면 개발 서버가 변경 사항을 다시 빌드합니다. 다른 포트는 `PORT=8001 npm run dev`로 지정합니다.
 
@@ -152,6 +156,8 @@ chamber: {
 - 새 식물 종의 입체 형상을 만들려면 3D 코드 수정이 필요합니다. 기존 `model` 값은 `rubber`, `pothos`, `peace`, `lambs`입니다.
 
 ## 3D 모델과 발표 조작
+
+표지는 네 식물을 중앙에 크게 배치한 전시형 구성입니다. 잎은 앞·뒷면과 테두리가 연결된 입체 형상이며, 고무나무 잎에는 더 두꺼운 단면을 사용합니다. 목적·결론·한계·후속 연구의 설명 그림은 데이터 파일의 `itemIcons`에서 바꿉니다(`leaf`, `compare`, `measure`, `particles`, `repeat`, `tape`).
 
 Three.js 0.180.0만 런타임 의존성으로 사용합니다. 라이브러리를 배포 파일에 포함하므로 CDN이나 외부 폰트가 필요 없습니다.
 

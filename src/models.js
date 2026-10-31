@@ -39,6 +39,23 @@ function leaf(kind,length,seed=1,detail=1) {
   geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));
   geometry.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2)); geometry.setIndex(indices); geometry.computeVertexNormals();
   const mat=new THREE.MeshPhysicalMaterial({color:palette[kind],roughness:kind==='rubber'?.3:kind==='lambs'?.98:.53,metalness:0,side:THREE.DoubleSide,clearcoat:kind==='rubber'?.7:kind==='peace'?.24:0,clearcoatRoughness:.3});
+  // Close the leaf with a second surface and a rim, so it retains volume when rotated.
+  const vertexCount=positions.length/3;
+  const thickness=length*(kind==='rubber'?.024:.009);
+  for(let i=0;i<vertexCount;i++)positions.push(positions[i*3],positions[i*3+1],positions[i*3+2]-thickness);
+  const back=mesh(geometry.clone().translate(0,0,-thickness),mat);
+  back.receiveShadow=false;group.add(back);
+  const rimIndices=[];
+  const rim=[];
+  for(let x=0;x<=cols;x++)rim.push(x);
+  for(let y=1;y<=rows;y++)rim.push(y*(cols+1)+cols);
+  for(let x=cols-1;x>=0;x--)rim.push(rows*(cols+1)+x);
+  for(let y=rows-1;y>0;y--)rim.push(y*(cols+1));
+  for(let i=0;i<rim.length;i++){const a=rim[i],b=rim[(i+1)%rim.length];rimIndices.push(a,a+vertexCount,b,b,a+vertexCount,b+vertexCount);}
+  const rimGeometry=new THREE.BufferGeometry();
+  rimGeometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));
+  rimGeometry.setIndex(rimIndices);rimGeometry.computeVertexNormals();
+  const edge=mesh(rimGeometry,mat);edge.receiveShadow=false;group.add(edge);
   const blade=mesh(geometry,mat);
   blade.receiveShadow=false; // Thin leaves should not shadow their own vein geometry.
   group.add(blade);
@@ -173,14 +190,14 @@ export function initModels() {
     if(group){scene.remove(group);disposeGroup(group);group=null;}
     host=nextHost;mode=host?.dataset.model||'';
     if(!host){cancelAnimationFrame(raf);raf=0;canvas.remove();return;}
-    zoom=1;yaw=0;pitch=0;
+    zoom=1;yaw=0;pitch=0;host.dataset.zoom='1.00';host.dataset.rotation='0.000';
     const detail=mobile.matches?.48:1;
     if(mode==='garden') {
       group=new THREE.Group();
       [['rubber',-1.65,0,.92],['peace',.05,-.72,1.04],['pothos',1.6,.3,.93],['lambs',-.1,1.1,.74]].forEach(([kind,x,z,scale])=>{const p=plant(kind,detail);p.position.set(x,0,z);p.scale.setScalar(scale);group.add(p);});
       baseDistance=10;target=V(0,1.25,0);
     }else if(mode.startsWith('surface:')) {group=surface(mode.split(':')[1],detail);baseDistance=6.4;target=V(0,.12,0);}
-    else {group=plant(mode,detail);baseDistance=6.3;target=V(0,1.4,0);}
+    else {group=plant(mode,detail);baseDistance=mode==='rubber'?7.4:6.3;target=V(0,1.4,0);}
     scene.add(group);host.querySelector('.canvas-mount').append(canvas);host.classList.add('is-live');host.dataset.ready='webgl';host.dataset.species=mode;
     host.querySelector('.viewer-actions')?.removeAttribute('hidden');host.querySelector('.model-state').textContent='설명용 3D · 드래그하여 회전';
     sizeObserver.observe(host);resize();
@@ -204,7 +221,7 @@ export function initModels() {
   hosts.forEach(h=>{
     h.addEventListener('modelchange',()=>{if(host===h)switchModel(h);});
     h.querySelectorAll('[data-zoom]').forEach(b=>b.addEventListener('click',()=>{if(host!==h)switchModel(h);adjustZoom(b.dataset.zoom==='in'?.15:-.15);}));
-    h.querySelector('[data-reset]')?.addEventListener('click',()=>{yaw=0;pitch=0;zoom=1;dirty=true;start();});
+    h.querySelector('[data-reset]')?.addEventListener('click',()=>{yaw=0;pitch=0;zoom=1;h.dataset.zoom='1.00';h.dataset.rotation='0.000';dirty=true;start();});
   });
   let drag=null;
   canvas.addEventListener('pointerdown',event=>{drag={x:event.clientX,y:event.clientY,yaw,pitch};canvas.setPointerCapture(event.pointerId);});
@@ -213,11 +230,11 @@ export function initModels() {
   canvas.addEventListener('keydown',event=>{
     if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','=','-'].includes(event.key))return;
     event.preventDefault();event.stopPropagation();
-    if(event.key==='+'||event.key==='=')adjustZoom(.15);else if(event.key==='-')adjustZoom(-.15);else {yaw+=event.key==='ArrowLeft'?-.15:event.key==='ArrowRight'?.15:0;pitch+=event.key==='ArrowUp'?.1:event.key==='ArrowDown'?-.1:0;dirty=true;start();}
+    if(event.key==='+'||event.key==='=')adjustZoom(.15);else if(event.key==='-')adjustZoom(-.15);else {yaw+=event.key==='ArrowLeft'?-.15:event.key==='ArrowRight'?.15:0;pitch=THREE.MathUtils.clamp(pitch+(event.key==='ArrowUp'?.1:event.key==='ArrowDown'?-.1:0),-1,1);host.dataset.rotation=yaw.toFixed(3);dirty=true;start();}
   });
   canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();contextLost=true;cancelAnimationFrame(raf);raf=0;host?.classList.remove('is-live');if(host){host.dataset.ready='fallback';host.querySelector('.model-state').textContent='설명용 일러스트 · 그래픽 연결이 중단되었습니다';}});
   canvas.addEventListener('webglcontextrestored',()=>{contextLost=false;host?.classList.add('is-live');if(host)host.dataset.ready='webgl';dirty=true;start();});
   document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(raf);raf=0;}else{dirty=true;start();}});
   reduced.addEventListener('change',()=>{dirty=true;start();});
-  mobile.addEventListener('change',()=>{renderer.setPixelRatio(Math.min(devicePixelRatio,mobile.matches?1:1.5));resize();});
+  mobile.addEventListener('change',()=>{renderer.setPixelRatio(Math.min(devicePixelRatio,mobile.matches?1:1.5));sun.shadow.mapSize.set(mobile.matches?512:1024,mobile.matches?512:1024);sun.shadow.map?.dispose();sun.shadow.map=null;if(host){const active=host;mode='';switchModel(active);}resize();});
 }

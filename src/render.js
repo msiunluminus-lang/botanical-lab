@@ -1,4 +1,4 @@
-import { plantSVG, surfaceSVG, diagram } from './visuals.js';
+import { plantSVG, surfaceSVG, diagram, conceptIcon } from './visuals.js';
 
 export const escapeHTML = (value = '') => String(value).replace(/[&<>"']/g, (c) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
 const e = escapeHTML;
@@ -21,23 +21,23 @@ function photo(item, key) {
 const illustration = (kind,key,caption='과정 설명용 일러스트') => `<figure class="illustration">${diagram(kind,key)}<figcaption>${caption}</figcaption></figure>`;
 function paragraphs(s) { return (s.paragraphs||[]).map(p=>`<p>${e(p)}</p>`).join(''); }
 function note(s) { return s.note ? `<p class="research-note">${e(s.note)}</p>` : ''; }
-function items(s) { return `<div class="idea-list">${(s.items||[]).map(item=>`<article><span class="idea-dot" aria-hidden="true"></span><h3>${e(item.title)}</h3><p>${e(item.text)}</p></article>`).join('')}</div>`; }
+function items(s,d) { return `<div class="idea-list">${(s.items||[]).map((item,i)=>`<article><span class="idea-dot" aria-hidden="true">${conceptIcon(d.itemIcons?.[s.id]?.[i])}</span><h3>${e(item.title)}</h3><p>${e(item.text)}</p></article>`).join('')}</div>`; }
 function content(s,d) {
   const text=`<div class="reading">${paragraphs(s)}${note(s)}</div>`;
   switch(s.type) {
     case 'overview': return `<div class="overview-layout">${text}<nav class="toc" aria-label="연구 목차">${d.navigation.map(n=>`<a href="#${e(n.target)}"><span>${e(n.label)}</span><span aria-hidden="true">↗</span></a>`).join('')}</nav></div>`;
     case 'story': case 'interpretation': return `<div class="split">${illustration(s.visual,s.id)}${text}</div>`;
-    case 'purpose': return `${text}${items(s)}`;
+    case 'purpose': return `${text}${items(s,d)}`;
     case 'hypothesis': return `<div class="split">${viewer('lambs','hypothesis','램스이어의 잔털 모형')}<div>${text}<a class="inline-link" href="#interpretation">실제 결과와 비교하기 ↗</a></div></div>`;
     case 'surfaces': return `<div class="surface-layout"><div><div class="surface-options" role="group" aria-label="표면 모형 선택">${d.surfaces.map((surface,i)=>`<button type="button" data-surface="${surface.id}" aria-pressed="${i===0}">${e(surface.name)}</button>`).join('')}</div><div class="surface-description" aria-live="polite">${e(d.surfaces[0].description)}</div>${text}</div>${viewer('surface:smooth','surface','확대 가능한 잎 표면 개념 모형')}</div><div class="surface-static">${d.surfaces.map(surface=>`<figure>${surfaceSVG(surface.id,`static-${surface.id}`)}<figcaption><strong>${e(surface.name)}</strong><p>${e(surface.description)}</p></figcaption></figure>`).join('')}</div>`;
-    case 'contrast': return `<div class="contrast">${s.items.map((item,i)=>`<article>${surfaceSVG(i?'hair':'wax',`contrast-${i}`)}<h3>${e(item.title)}</h3><p>${e(item.text)}</p></article>`).join('')}</div>`;
-    case 'plants': return `<div class="plant-selector" role="group" aria-label="식물 모형 선택">${d.plants.map((plant,i)=>`<button type="button" data-plant="${e(plant.id)}" aria-pressed="${i===0}">${plantSVG(plant.model,`thumb-${plant.id}`)}<span>${e(plant.name)}</span></button>`).join('')}</div><div class="plant-exhibit">${viewer(d.plants[0].model,'plant','선택한 식물의 3D 모형')}<div class="plant-details">${d.plants.map((plant,i)=>`<article data-plant-info="${e(plant.id)}" ${i?'hidden':''}><span class="plant-trait">${e(plant.trait)}</span><h3>${e(plant.name)}</h3><p>${e(plant.description)}</p>${photo(plant,plant.id)}</article>`).join('')}${note(s)}</div></div>`;
+    case 'contrast': return `${text}<div class="contrast">${s.items.map((item,i)=>`<article>${surfaceSVG(i?'hair':'wax',`contrast-${i}`)}<h3>${e(item.title)}</h3><p>${e(item.text)}</p></article>`).join('')}</div>`;
+    case 'plants': return `<div class="reading">${paragraphs(s)}</div><div class="plant-selector" role="group" aria-label="식물 모형 선택">${d.plants.map((plant,i)=>`<button type="button" data-plant="${e(plant.id)}" aria-pressed="${i===0}">${plantSVG(plant.model,`thumb-${plant.id}`)}<span>${e(plant.name)}</span></button>`).join('')}</div><div class="plant-exhibit">${viewer(d.plants[0].model,'plant','선택한 식물의 3D 모형')}<div class="plant-details">${d.plants.map((plant,i)=>`<article data-plant-info="${e(plant.id)}" ${i?'hidden':''}><span class="plant-trait">${e(plant.trait)}</span><h3>${e(plant.name)}</h3><p>${e(plant.description)}</p>${photo(plant,plant.id)}</article>`).join('')}${note(s)}</div></div>`;
     case 'experiment': return `<div class="experiment-layout">${illustration(s.visual,s.id,s.visual==='analysis'?'이미지 → 영역 구분 · 원리 설명용 예시':'실험 과정 설명용 구성도')}<div class="reading">${s.metric?`<div class="metric"><strong>${e(s.metric)}</strong><span>${e(s.unit)}</span></div>`:''}${paragraphs(s)}${note(s)}</div></div>${photo(d.photos[s.photo],s.photo)}`;
     case 'table': return `<div class="result-layout">${text}<div class="table-wrap"><table><caption>활성탄 측정 면적 · cm²</caption><thead><tr><th scope="col">식물</th><th scope="col">앞면</th><th scope="col">뒷면</th></tr></thead><tbody>${d.plants.map(p=>`<tr><th scope="row"><span class="plant-dot" style="background:${p.color}"></span>${e(p.name)}</th><td>${p.front.toFixed(3)}</td><td>${p.back.toFixed(3)}</td></tr>`).join('')}</tbody></table></div></div>`;
     case 'comparison': { const max=Math.max(...d.plants.flatMap(p=>[p.front,p.back]),.001); return `${text}<div class="legend"><span>● 앞면</span><span>● 뒷면</span><small>각 행의 막대는 같은 축척 · cm²</small></div><div class="comparison-chart">${d.plants.map(p=>`<article><h3>${e(p.name)}</h3><div class="paired-bar"><span style="--width:${p.front/max*100}%"></span><b>${p.front.toFixed(3)}</b></div><div class="paired-bar back"><span style="--width:${p.back/max*100}%"></span><b>${p.back.toFixed(3)}</b></div></article>`).join('')}</div>`; }
     case 'rates': return `<div class="result-layout">${text}<figure class="rate-chart"><figcaption>앞면 흡착률 · 보고서 기재 값</figcaption>${[...d.plants].sort((a,b)=>b.rate-a.rate).map((p,i)=>`<div class="chart-row"><div class="bar-label"><span>${e(p.name)}</span><strong>${p.rate.toFixed(1)}<small>%</small></strong></div><div class="bar-track"><div class="bar-fill" style="--value:${p.rate}%;--delay:${i*90}ms"></div></div></div>`).join('')}<div class="chart-axis"><span>0%</span><span>50%</span><span>100%</span></div></figure></div>`;
-    case 'conclusion': case 'limits': case 'future': return `${text}${items(s)}`;
-    case 'closing': return `<div class="closing-visual">${plantSVG('peace','closing')}</div><p class="signature">${e(d.researchers)}</p><a class="inline-link" href="#top">처음으로 돌아가기 ↑</a>`;
+    case 'conclusion': case 'limits': case 'future': return `${text}${items(s,d)}`;
+    case 'closing': return `${text}<div class="closing-visual">${plantSVG('peace','closing')}</div><p class="signature">${e(d.researchers)}</p><a class="inline-link" href="#top">처음으로 돌아가기 ↑</a>`;
     default: return `<div class="split">${text}${illustration(s.visual||'contact',s.id)}</div>`;
   }
 }

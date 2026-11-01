@@ -6,13 +6,15 @@
 
 ## 실행
 
-배포된 웹사이트를 PC의 Chrome 또는 Edge에서 엽니다. 로컬 실행은 이 폴더에서 다음 명령을 실행한 뒤 `http://localhost:8000`을 엽니다.
+**가장 간단한 실행:** 소스 ZIP을 압축 해제하고 `offline.html`을 Chrome 또는 Edge에서 열면 됩니다. 사진·폰트·코드가 모두 들어 있어 인터넷이나 서버가 필요하지 않습니다.
+
+일반 웹사이트 버전은 이 폴더에서 다음 명령을 실행한 뒤 `http://localhost:8000`을 엽니다.
 
 ```sh
 python -m http.server 8000
 ```
 
-`index.html`을 더블클릭하는 `file://` 실행은 권장하지 않습니다. 브라우저 정책에 따라 IndexedDB나 원본 이미지의 JSON 내보내기가 제한될 수 있습니다. 웹 서버는 정적 파일을 제공할 뿐, 사용자 데이터는 서버에 저장하지 않습니다.
+분리된 소스인 `index.html`을 더블클릭하는 `file://` 실행은 권장하지 않습니다. 더블클릭 실행에는 `offline.html`을 사용하세요. 브라우저 정책에 따라 IndexedDB나 원본 이미지의 JSON 내보내기가 제한될 수 있습니다. 웹 서버는 정적 파일을 제공할 뿐, 사용자 데이터는 서버에 저장하지 않습니다.
 
 ## 발표
 
@@ -49,6 +51,7 @@ python -m http.server 8000
 ## 파일 구조
 
 ```text
+offline.html     더블클릭 실행용 단일 HTML (모든 사진·폰트 포함)
 index.html       앱 구조와 편집/발표 UI
 style.css        16:9 디자인, 슬라이드별 레이아웃, 전환 효과
 app.js           발표, 편집, IndexedDB, JSON, 실행 취소/재실행
@@ -57,6 +60,7 @@ assets/          원자료 이미지, 한국어 폰트, 폰트 라이선스
 SOURCES.md       원자료와 해석 기준
 TESTING.md       수행한 검증 및 범위
 .nojekyll        GitHub Pages 정적 파일 제공용
+tools/           단일 HTML 재생성 스크립트
 ```
 
 ## GitHub Pages
@@ -64,3 +68,5 @@ TESTING.md       수행한 검증 및 범위
 저장소의 Settings → Pages에서 이 파일이 있는 브랜치의 `/ (root)`를 선택하면 됩니다. 모든 앱·이미지·폰트 경로는 상대 경로이므로 저장소 하위 주소에서도 동작합니다. 외부 CDN이나 패키지 설치가 필요하지 않습니다. Pages 설정은 별도로 변경하지 않았습니다.
 
 기본 수정 내용은 로컬에만 저장됩니다. 모든 방문자에게 기본 슬라이드 변경을 배포하려면 내보낸 JSON의 데이터로 `slides.js`의 `window.DEFAULT_DECK`을 갱신하고 저장소에 반영합니다.
+
+`offline.html`은 `python tools/build-standalone.py`로 재생성합니다. 기본 파일 주소에서 저장소를 사용할 수 없는 브라우저에서는 JSON 백업을 사용하거나 정적 웹 서버로 실행하세요.

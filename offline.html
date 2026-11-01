@@ -22,6 +22,58 @@ body.controls-hidden .presentation-controls{visibility:hidden;pointer-events:non
 
 .closing .image-node{mix-blend-mode:normal}.closing .slide-decor .orb{position:absolute;bottom:0;left:0;width:100%;height:205px;background:#dcebb3}
 .cover .slide-decor .orb{width:110px;height:110px;right:96px;top:65px}
+
+/* 3D pastel botanical lab — presentation skin; slide data and editor behavior stay intact. */
+:root{--forest:#283b50;--green:#579b8f;--lime:#e5efd9;--paper:#fff9f3;--line:#dcdfea;--muted:#677789}
+body{background:radial-gradient(circle at 8% 8%,#e6f7f0 0,transparent 35%),radial-gradient(circle at 93% 90%,#eee7fa 0,transparent 34%),#f6f2f8}
+.app-header,.slide-rail,.inspector{background:linear-gradient(145deg,#fffdfb 0%,#f2f6f8 100%)}
+.app-header{box-shadow:0 8px 32px #576b8930;border-bottom-color:#fff}
+.brand-icon,.primary-btn{background:linear-gradient(140deg,#75c9b3,#739bd1 72%,#aa9cda);box-shadow:inset 1px 2px 2px #ffffffb8,0 7px 16px #7e9ac94d;color:#fff}
+.primary-btn,.outline-btn,.quiet-btn,.nav-btn,.icon-btn{transition:transform .22s ease,box-shadow .22s ease,background .22s ease}
+.primary-btn:hover:not(:disabled),.outline-btn:hover:not(:disabled),.quiet-btn:hover:not(:disabled),.nav-btn:hover:not(:disabled),.icon-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 9px 18px #8197be3b}
+.outline-btn,.quiet-btn,.nav-btn{background:linear-gradient(160deg,#fffefa,#eff5f8);border-color:#d8e4e8}
+.slide-frame{border-radius:24px;box-shadow:0 28px 62px #766d9e2c,0 9px 20px #7da7ab24,0 1px 0 #fff inset}
+.slide-canvas{background:#fff9f3}
+.slide-decor{background-image:radial-gradient(circle at 95% 5%,#fff9 0 7%,transparent 16%),radial-gradient(circle at 4% 97%,#d9eeed78 0,transparent 22%);perspective:900px}
+.slide-decor::after{border-color:#8f9fba3d}
+.slide-decor .orb{box-shadow:inset -21px -24px 35px #8895bc54,inset 13px 16px 26px #fffdfae0,15px 24px 35px #6a84a14a!important;filter:saturate(.9);animation:float-orb 8s ease-in-out infinite alternate}
+.slide-decor .ticks{box-shadow:inset -8px -7px 14px #8dabc080,8px 11px 19px #819aa14d;background:#ffffff73;backdrop-filter:blur(5px);animation:float-orb 9s ease-in-out infinite alternate-reverse}
+.slide-decor .line{border-color:#8db9b1!important}
+.cover .slide-decor{background-image:radial-gradient(circle at 84% 38%,#e6def1 0,transparent 33%),radial-gradient(circle at 14% 72%,#e6f7eb 0,transparent 40%)}
+.cover .slide-decor::before,.closing .slide-decor::before{border:2px solid #afc6d682;transform:rotateX(23deg) rotateY(-9deg);box-shadow:14px 21px 28px #8893b329,inset 8px 13px 20px #fff7}
+.cover .slide-decor .orb{background:radial-gradient(circle at 28% 24%,#fff,#f9d9e5 37%,#c6b3de 76%,#91a6c9)!important;right:88px;top:59px;width:132px;height:132px}
+.cover .image-node,.closing .image-node{border-radius:48px!important;box-shadow:18px 30px 44px #6c92a651,inset 0 2px 2px #fff;transform:perspective(1000px) rotateY(-8deg) rotateX(3deg);filter:saturate(.9)}
+.cover .text-node:nth-of-type(4),.closing .text-node:nth-of-type(3){text-shadow:3px 5px 0 #c4d6d655,7px 12px 18px #8da1b846}
+.contents .slide-decor{background:linear-gradient(90deg,#fff9f3 0 46%,#eae8fb 46% 100%)}
+.contents .slide-decor::before{background:#c6b9df;box-shadow:0 108px #c6b9df,0 216px #c6b9df,0 324px #c6b9df}
+.contents .text-node:nth-of-type(5n+1){text-shadow:4px 5px 0 #bcb3e075,7px 10px 12px #8a87ba4d}
+.motivation .slide-decor::before{background:radial-gradient(circle at 30% 22%,#fffaf0,#efcae0 55%,#bcb3d8);box-shadow:inset -30px -24px 40px #8e93bb57,20px 29px 40px #708a9b47;transform:rotateY(-12deg)}
+.motivation .image-node,.specimens .image-node,.stomata .image-node{box-shadow:14px 20px 31px #768fa94a,-5px -5px 18px #fff9;border:9px solid #fffaf1!important;filter:saturate(.82) contrast(1.06)}
+.purpose .slide-decor{background-image:radial-gradient(circle at 96% 14%,#f5daeb 0,transparent 23%),radial-gradient(circle at 7% 91%,#d5efed 0,transparent 28%)}
+.purpose .text-node:nth-of-type(3n+1){text-shadow:3px 5px 0 #c4badf90,8px 12px 16px #8190b54a}
+.theory .slide-decor::before{background:linear-gradient(125deg,#e3f4e9,#dfe9fb,#f8e2e9);border-radius:45px;box-shadow:inset 0 3px 4px #fff,10px 18px 27px #8698aa3b}
+.theory .diagram-node{border-radius:55px;background:radial-gradient(ellipse at 30% 17%,#fffef8,#f0effa 72%);box-shadow:inset 0 3px 4px #fff,10px 19px 28px #8095af38;transform:perspective(900px) rotateX(6deg);padding:12px}
+.specimens .slide-decor{background-image:radial-gradient(circle at 78% 35%,#e6e1f5 0,transparent 30%),radial-gradient(circle at 12% 74%,#e8f7ed 0,transparent 29%)}
+.chamber .slide-decor::before{background:radial-gradient(circle at 22% 16%,#f9fff7,#dcecf0 67%,#d6d8ed);box-shadow:inset -19px -19px 28px #9eb5c474,18px 25px 34px #8caab34b}
+.chamber .diagram-node{filter:drop-shadow(16px 22px 15px #77949b75);transform:perspective(900px) rotateY(-5deg) rotateX(4deg)}
+.process .slide-decor .orb{background:radial-gradient(circle at 30% 23%,#fff,#fff1bf 37%,#e3c9df 76%,#b7b2d9)}
+.process .text-node:nth-of-type(3n+2),.results-rate .text-node:nth-last-of-type(5){text-shadow:5px 7px 0 #d6d0e389,12px 18px 21px #8e97b852}
+.transfer .diagram-node,.analysis .diagram-node{filter:drop-shadow(13px 18px 12px #7a9b9857);transform:perspective(850px) rotateX(8deg)}
+.analysis .diagram-node{border-radius:22px;box-shadow:inset 0 3px 4px #fff,12px 20px 25px #8ca2b83b;background:#fffdf9}
+.results-area .slide-decor{background-image:radial-gradient(circle at 82% 19%,#eee4f5 0,transparent 26%),radial-gradient(circle at 9% 79%,#e1f3ed 0,transparent 31%)}
+.chart-node{filter:drop-shadow(8px 12px 8px #8aa9ac69)}
+.chart-node .bar{filter:drop-shadow(5px 5px 3px #607f9166)}
+.results-rate .slide-decor::before{background:linear-gradient(135deg,#e4f4e9,#eee2f5 62%,#f8e8d5);border-radius:180px 180px 25px 25px;box-shadow:inset 3px 5px 5px #fff,16px 25px 37px #8996b651}
+.stomata .slide-decor{background-image:radial-gradient(circle at 50% 67%,#e5e2f5 0,transparent 43%),radial-gradient(circle at 95% 9%,#e1f5ef 0,transparent 25%)}
+.conclusion .slide-decor{background-image:radial-gradient(circle at 83% 34%,#f8e3ee 0,transparent 28%),radial-gradient(circle at 12% 80%,#e6f4ee 0,transparent 25%)}
+.closing .slide-decor .orb{background:linear-gradient(95deg,#dff2eb,#e7e5fa,#f9e6e9)!important;border-radius:100px 100px 0 0;box-shadow:inset 0 5px 8px #fff,0 -10px 25px #a3afc438!important;animation:none}
+.thumb .slide-decor .orb,.thumb .slide-decor .ticks,.editing .slide-decor .orb,.editing .slide-decor .ticks{animation:none}
+.editing .node-selected{outline-color:#8a77bb!important}
+.inspector{box-shadow:-7px 0 29px #8da1bb1c}
+body.presenting{background:#ddd7ea}
+body.presenting .presentation-controls{background:#ffffffd9;box-shadow:0 13px 35px #7c8eaf5e}
+@keyframes float-orb{from{translate:0 0;rotate:-2deg}to{translate:0 -15px;rotate:3deg}}
+@media(prefers-reduced-motion:reduce){.slide-decor .orb,.slide-decor .ticks{animation:none!important}.primary-btn,.outline-btn,.quiet-btn,.nav-btn,.icon-btn{transition:none!important}}
 </style>
 </head>
 <body>

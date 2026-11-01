@@ -68,3 +68,27 @@ body.presenting{background:#ddd7ea}
 body.presenting .presentation-controls{background:#ffffffd9;box-shadow:0 13px 35px #7c8eaf5e}
 @keyframes float-orb{from{translate:0 0;rotate:-2deg}to{translate:0 -15px;rotate:3deg}}
 @media(prefers-reduced-motion:reduce){.slide-decor .orb,.slide-decor .ticks{animation:none!important}.primary-btn,.outline-btn,.quiet-btn,.nav-btn,.icon-btn{transition:none!important}}
+
+/* Timed slide entrances; transform scaling of the 16:9 canvas is preserved. */
+.slide-frame{perspective:1200px}
+.transition-ghost{z-index:5!important;animation:none!important}
+.transition-ghost .node,.transition-ghost .bar,.transition-ghost .slide-decor .orb,.transition-ghost .slide-decor .ticks{animation:none!important}
+.slide-canvas .node{animation-duration:.66s;animation-delay:min(540ms,calc(var(--index) * 68ms));animation-fill-mode:both}
+.slide-canvas .text-node{animation-name:body-rise}
+.slide-canvas .text-node:nth-child(3),.slide-canvas.cover .text-node:nth-child(4){animation-name:title-arrive}
+.slide-canvas .image-node{animation-name:photo-arrive;animation-duration:.82s}
+.slide-canvas .diagram-node{animation-name:diagram-arrive}
+.slide-canvas .chart-node{animation-name:body-rise}
+.slide-canvas .chart-node .bar{animation-duration:.9s;animation-delay:.28s}
+.slide-canvas .results-rate .bar{animation-delay:.32s}
+body.presenting .slide-decor{translate:var(--mx,0px) var(--my,0px);transition:translate .38s ease-out}
+.cover .slide-decor .orb,.motivation .slide-decor::before,.process .slide-decor .orb{animation:float-orb 8s ease-in-out infinite alternate,slow-turn 24s ease-in-out infinite alternate}
+.cover .image-node img,.closing .image-node img{animation:leaf-sway 9s ease-in-out infinite alternate;transform-origin:50% 78%}
+@keyframes body-rise{from{opacity:0;translate:0 22px}to{opacity:1;translate:0 0}}
+@keyframes title-arrive{from{opacity:0;translate:0 16px;scale:.94}to{opacity:1;translate:0 0;scale:1}}
+@keyframes photo-arrive{from{opacity:0;scale:.86}to{opacity:1;scale:1}}
+@keyframes diagram-arrive{from{opacity:0;translate:0 15px;rotate:-3deg}to{opacity:1;translate:0 0;rotate:0deg}}
+@keyframes slow-turn{from{rotate:-3deg}to{rotate:4deg}}
+@keyframes leaf-sway{from{rotate:-1.1deg}to{rotate:1.1deg}}
+.editing .slide-canvas .node,.thumb .node,.editing .slide-canvas .bar,.thumb .bar,.editing .image-node img,.thumb .image-node img{animation:none!important}
+@media(prefers-reduced-motion:reduce){.slide-canvas .node,.slide-canvas .bar,.slide-decor .orb,.slide-decor .ticks,.slide-decor::before,.image-node img{animation:none!important}.slide-decor{transition:none!important}}
